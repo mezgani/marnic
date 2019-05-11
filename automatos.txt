@@ -1,0 +1,54 @@
++-----------------------------------------------+
+| Chaîne de production d'un registre de domaine |
++-----------------------------------------------+
+
+
+Nous allons procédez a la construction d'un automate deterministe,
+pour but la gestion ainsi qu'a l'interpolations des différentes phases d'interprétations.
+La chaîne de production whois suivra plusieurs cycles dont certains flags peuvent être
+définissables selon les contraintes suivantes :
+
+-------------------------------------------------------------------------------------------------------
+Demande d'enregistrement   => DE
+Demande de modification    =>  
+		           => Contact Administratif   : DMA
+		           => Contact Technique       : DMT
+Demande de renouvelement   => DR
+Demande de suppression     => DS
+---------------------------------------------------------------------------------------------------------
+
+---------------------Pour les Bureau d'enregistrement-------------------------------------
+Demande d'enregistrement des prestataires    =>  DP
+Demande de modification  des prestataires    =>  DP : { DPA, DPT }
+Demande de Création d'une zone                   =>  CZ
+Demande de Renouvellement d'une zone         =>  RZ
+Demande de Modifications d'une zone              =>  MZ : { MZA, MZT }
+Demande de suppresion d'une zone                 =>  SZ
+---------------------------------------------------------------------------------------------------------									
+
+Soit:
+  
+Alphabet = { smtp, http, soap }
+Ensemble = { template_f, template_g, template_h }
+Etat     = { Q0, Q1, Q2, Q3 }
+Transistion = 
+
+                      0    1      2      3
+                 0    0    1      0      0
+                 1    0    0      1      0
+                 2    0    0      0      1
+                 3    0    0      0      0
+	
+	         +----------------------+
+	         |  reception template  |
+                 +----------------------+
+
+
+
+Feuille de route, matrice de transition et spécification des états déterministes de la chaine de production serait modélisé sous format de automatos.
+In/Out, Stderr ( la pile des exceptions ) seriont modélisés avec le langage des prédicats Z.
+Prolog pour le calcul des prédicats, unification des états et modélisation des bases de données.
+
+
+
+
